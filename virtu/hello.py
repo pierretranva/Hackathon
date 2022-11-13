@@ -8,7 +8,7 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config["CORS_HEADERS"] = "Content-Type"
 
 
-@app.route("/", methods=["GET"])
+@app.route("/<year>", methods=["GET"])
 @cross_origin(origin="*", allow_headers=["Content-Type"])
-def print_data():
-    return jsonify(print_values())
+def print_data(year):
+    return jsonify(print_values(year))

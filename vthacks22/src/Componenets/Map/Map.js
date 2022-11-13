@@ -11,10 +11,10 @@ const center = {
   lat: 41,
     lng: -99
 };
-async function generateCircles() {
-  
+async function generateCircles(year) {
+  console.log(year)
 
-  var thing = await fetchData()
+  var thing = await fetchData(year + 2010)
   var arr = []
   // var thing2= [Object.keys(thing).forEach((key,index) => {
   //   genOneCircle(thing[key])
@@ -23,7 +23,6 @@ async function generateCircles() {
     arr.push(genOneCircle(thing[i]))
     arr.push(genOneCircle2(thing[i]))
   }
-  console.log(arr)
   return arr
   // return Object.entries(thing.map(([key, value]) => genOneCircle(value)));
   
@@ -51,7 +50,6 @@ const options2 = {
   
 }
 function genOneCircle(value){
-  console.log(value)
 return <Circle options = {options} center= {{lat: value[0], lng: value[1]}} radius={value[2]*110}/>
 // return <div></div>
 }
@@ -61,12 +59,10 @@ return <Circle options = {options2} center= {{lat: value[0], lng: value[1]}} rad
 // return <div></div>
 }
 
-const fetchData = async () => {
-
-  const response = await fetch("http://127.0.0.1:5000/")
+const fetchData = async (year) => {
+  const response = await fetch("http://127.0.0.1:5000/" + year)
 
   const jsonRes = await response.json()
-  // console.log(JSON.stringify(jsonRes))
 
   return jsonRes
 
@@ -81,10 +77,10 @@ function MyComponent() {
   })
   const [data, setData] = React.useState(null)
   const [map, setMap] = React.useState(null)
-  const [circles, setCircles] = React.useState([])
+  const [circles, setCircles] = React.useState(<div></div>)
   const [reloaded, setReloaded] = React.useState(false)
+  var year = 0
   
-  console.log("hellp")
 
 
   const onLoad = React.useCallback(function callback(map) {
@@ -96,23 +92,21 @@ function MyComponent() {
     setMap(map)
   }, [])
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+  // const onUnmount = React.useCallback(function callback(map) {
+  //   setMap(null)
+  // }, [])
   
   if(!reloaded){
-
-  const genCircles = generateCircles();
-
-
-  genCircles.then((response) => {
-  
-    setCircles(response)
     setReloaded(true)
-   
-
-
-  });}
+    setInterval(() => {
+      const genCircles = generateCircles(year);
+      genCircles.then((response) => {
+        setCircles(response)
+        year = (year + 1) % 11
+      });
+    }, 5000)
+    
+  }
   console.log(circles)
   return isLoaded ? (
     
@@ -122,11 +116,12 @@ function MyComponent() {
       mapContainerStyle={containerStyle}
       center={center}
       zoom={3}
-      onUnmount={onUnmount}
+      // onUnmount={onUnmount}
     >
-
-      {circles}
-      <></>
+      <React.Fragment>
+        {circles}
+      </React.Fragment>
+      
     </GoogleMap>
 
     

@@ -14,11 +14,13 @@ import numpy as np
 from math import cos
 
 
-def print_values() -> dict:
-    ghgdf = pd.read_excel("ghgpdata2021.xlsx", sheet_name="Direct Emitters", header=3)
+def print_values(year) -> dict:
+    ghgdf = pd.read_excel(
+        "ghgp/ghgp_data_" + year + ".xlsx", sheet_name="Direct Emitters", header=3
+    )
 
     k = 10
-    nonnadistances = ghgdf.iloc[:, 8:11].dropna()
+    nonnadistances = ghgdf.iloc[:, [8, 9, 14]].dropna()
     distances = nonnadistances[["Latitude", "Longitude"]]
     KM = KMeans(n_clusters=k)
     KMfit = KM.fit(distances)
@@ -54,6 +56,3 @@ def print_values() -> dict:
             round(cluster_sums[i], 0),
         ]
     return out
-
-
-print(print_values())
