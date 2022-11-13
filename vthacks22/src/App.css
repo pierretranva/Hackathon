@@ -2,7 +2,8 @@
 	text-align: center;
 }
 .App-header {
-	background-color: #282c34;
+	/*background-image: linear-gradient(#231016,#99784b); */
+	background-image: linear-gradient(#1b758b,#bcf5df);
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
