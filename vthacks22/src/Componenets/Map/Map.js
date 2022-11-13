@@ -32,6 +32,7 @@ const containerStyle = {
     }, [])
   
     return isLoaded ? (
+        <div class= "main">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
@@ -42,6 +43,7 @@ const containerStyle = {
           { /* Child components, such as markers, info windows, etc. */ }
           <></>
         </GoogleMap>
+        </div>
     ) : <></>
   }
   
