@@ -7,9 +7,9 @@ import './Paragraph.css';
     
 
     return(
-        <div className= 'App'>
-        <p> Click the see top carbon emission leader of the country!</p>
-        
+        <div className= 'check'>
+        <p> Check out the carbon emission leader of the country!</p>
+  
         
         
  </div>

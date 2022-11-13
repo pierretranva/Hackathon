@@ -9,8 +9,7 @@ import {Button} from '@mui/material'
 
     return(
         <div className= 'App'>
-        <h1> CO2 Emissions </h1>
-        
+               
         
         
  </div>

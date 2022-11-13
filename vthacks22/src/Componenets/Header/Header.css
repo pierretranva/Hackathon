@@ -8,4 +8,16 @@ h1 {
     color: #ffffff;
     position: relative;
     margin-top: -3px;
+    
+}
+
+h2{
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 5rem;
+    font-weight: 150;
+    color: #ffffff;
+    position: absolute;
+    margin-top: -5px;
 }
