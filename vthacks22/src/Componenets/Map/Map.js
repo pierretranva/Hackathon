@@ -11,14 +11,27 @@ const center = {
   lat: 41,
     lng: -99
 };
-function generateCricles(emissionsData) {
-  return Object.entries(emissionsData).map(([key, value]) => genOneCircle(value));
+function generateCricles() {
+
+  console.log("YOU RE BAIDUFH")
+  return Object.entries(fetchData()).map(([key, value]) => genOneCircle(value));
+  
 
 }
+
 function genOneCircle(value){
-return <Circle center= {{lat: value[0], lng: value[1]}} radius={value[2]}/>
+  console.log("THIS IS ONE ICIRLCES")
+return <Circle center= {{lat: value[0], lng: value[1]}} radius={value[2]/1000}/>
 }
-   
+const fetchData = async () => {
+  const response = await fetch("http://127.0.0.1:5000/")
+  const jsonRes = await response.json()
+  console.log("hellollo")
+  return JSON.stringify(jsonRes)
+
+}
+
+
 function MyComponent() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -40,27 +53,26 @@ function MyComponent() {
     setMap(null)
   }, [])
   const fetchData = async () => {
-    const response = await fetch("http://127.0.0.1:5000/get")
+    const response = await fetch("http://127.0.0.1:5000/")
     const jsonRes = await response.json()
 
     setData(JSON.stringify(jsonRes))
     generateCricles(jsonRes);
     
-
   }
   
 
   return isLoaded ? (
     
     <div className= "main">
-    <Button variant="contained" onClick={fetchData}>{data}</Button>
+    {/* <Button variant="contained" onClick={fetchData}></Button> */}
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={4.4}
       onUnmount={onUnmount}
     >
-      {generateCircle()}
+      {generateCricles()}
       <></>
     </GoogleMap>
 
