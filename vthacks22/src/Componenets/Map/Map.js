@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
     width: '400px',
@@ -40,7 +40,7 @@ const containerStyle = {
           onLoad={onLoad}
           onUnmount={onUnmount}
         >
-          { /* Child components, such as markers, info windows, etc. */ }
+          <Marker position={{lat: 44, lng:-80}} />
           <></>
         </GoogleMap>
         </div>
