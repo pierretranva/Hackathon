@@ -14,10 +14,6 @@ function App() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const handleClick = (event) => {
-    ref.current?.scrollIntoView({behavior: 'smooth'});
-
-  };
   return (
     <div className="App2">
        <Box sx={{ width: '100%' }}>
@@ -30,26 +26,25 @@ function App() {
       >
         <Tab href="#ribbit" value="one" label="CO2 Emissions" />
         <Tab href="#meow" value="two" label="About Us" />
-        <Tab href="#bark" value="three" label="Contact Us" />
+        <Tab href="#bark" value="three" label="Developers" />
       </Tabs>
 
     </Box>
-      <div className='emi'> <p className="ribbit"> CO2 Emission</p></div>
 
       <header className="App-header">
+      <div className='emi'> <p className="ribbit"> CO2 Emission</p></div>
+      <Map/>
       <div className= 'Legend'>
         <p1> Red is carbon emission density (CO2 emissions/km^2) </p1>
-        <p2> Blue is Total carbon emission per cluster (CO2) </p2>
+        <body> Blue is Total carbon emission per cluster (CO2) </body>
       </div>
-      <div className='abt'> <p id="meow"> About Us</p></div>
-      <div className='cont'> <p id="bark"> Contact Us</p></div>
-
-        <Header/>
-        <Paragraph></Paragraph>
-      <Map/>
+      <div className='cont'> 
+      <p1 id="bark"> Developers </p1>
+      <body>
+        Junhyung Koo, Pierre Tran, Gawain Zhang, Alex Owens, Abhi Gautam 
+      </body>
+      </div>
       </header>
-      
-
     </div>
   );
 }
