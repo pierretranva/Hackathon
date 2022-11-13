@@ -29,7 +29,9 @@ function MyComponent() {
 
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    
+    const bounds = new window.google.maps.LatLngBounds(center);
+      map.fitBounds(bounds);
+      map.setZoom()
 
     setMap(map)
   }, [])
@@ -42,7 +44,11 @@ function MyComponent() {
     const jsonRes = await response.json()
 
     setData(JSON.stringify(jsonRes))
+    generateCricles(jsonRes);
+    
+
   }
+  
 
   return isLoaded ? (
     
@@ -52,14 +58,12 @@ function MyComponent() {
       mapContainerStyle={containerStyle}
       center={center}
       zoom={4.4}
-      onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      <Marker center={{lat: 44, lng:-80}} title="urbad" />
-      <Circle center={{lat: 30, lng: -110}} radius={1000}/> 
+      {generateCircle()}
       <></>
     </GoogleMap>
-    
+
     
     </div>
   ) : <></>
