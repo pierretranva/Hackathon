@@ -73,7 +73,7 @@ const fetchData = async (year) => {
 function MyComponent() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCLpgWdVjH1BsdSGK0uukAI1gxGgtkefg4"
+    googleMapsApiKey: "tempString"
   })
   const [data, setData] = React.useState(null)
   const [map, setMap] = React.useState(null)
